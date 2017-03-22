@@ -16,6 +16,9 @@ public class TaxiStationModel implements Subject  {
 	KioskWindow window1;
 	KioskWindow window2;
 	
+	Thread thread1;
+	Thread thread2;
+	
 
 	public TaxiStationModel()  {
 		pgManage = new PassengerManager();
@@ -79,19 +82,20 @@ public class TaxiStationModel implements Subject  {
 			
 			// creates and starts a thread using this counter
 			if(count%2 == 0){
-				window1 = new KioskWindow("W1",pass,taxi);
-				notifyObservers();			
-				Thread thread1 = new Thread(window1);
+				window1 = new KioskWindow("W1",pass,taxi);					
+				thread1 = new Thread(window1);				
 				thread1.start();
+				notifyObservers();
+				
 			}else{
 				// creates and starts a 2nd thread using this counter
-				window2 = new KioskWindow("W2",pass,taxi);
-				notifyObservers();	
-				Thread thread2 = new Thread(window2);							
+				window2 = new KioskWindow("W2",pass,taxi);					
+				thread2 = new Thread(window2);					
 				thread2.start();
+				notifyObservers();
 			}		
 			count++;
-			if(count == (pgManage.getLimit()+1) || count == (taxiManage.getLimit()+1)){
+			if(count == (pgManage.getLimit()) || count == (taxiManage.getLimit())){
 		    	break;
 		    }
 		}

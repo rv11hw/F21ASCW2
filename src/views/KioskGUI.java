@@ -9,6 +9,7 @@ import javax.swing.JSplitPane;
 import javax.swing.JTextArea;
 
 import interfaces.Observer;
+import model.KioskWindow;
 import model.TaxiStationModel;
  
 public class KioskGUI extends JFrame implements Observer  {
@@ -17,11 +18,18 @@ public class KioskGUI extends JFrame implements Observer  {
 	JTextArea window1TextArea;
 	JTextArea window2TextArea;
 	TaxiStationModel model;
+	KioskWindow model2;
+	
+	public KioskGUI(){
+		
+	}
 	
     public KioskGUI(TaxiStationModel model) {
     	
     	this.model = model;
-    	model.registerObserver(this);
+    	model2 = new KioskWindow();
+    	//model.registerObserver(this);
+    	model2.registerObserver(this);
          
         setTitle("Taxi Station - Kiosk");
         setSize(450, 350);
@@ -58,10 +66,18 @@ public class KioskGUI extends JFrame implements Observer  {
         this.pack();
    
     }
-    public void update()
+    public void update(){
+    	
+    }
+    public void update(String worker)
 	{
-    	window1TextArea.setText(window1TextArea.getText()+"\n"+model.getWin1Queue());
-    	window2TextArea.setText(window2TextArea.getText()+"\n"+model.getWin2Queue());
+    	if(worker.equals("W1")){
+    		System.out.println("w1");
+    		//window1TextArea.setText(window1TextArea.getText()+"\n"+model2.getwindow1Str());
+    	} else{
+    		System.out.println("w2");
+    		//window2TextArea.setText(window2TextArea.getText()+"\n"+model2.getwindow2Str());
+    	}    	
     	repaint();
 	}
 }
