@@ -16,8 +16,8 @@ public class PassengerManager {
 	PassengerManager(){
 		 passengerGroup = new ArrayList<PassengerInfo>();
 		 fetchData();
-
 	}
+	
 	public void fetchData(){		
 		ArrayList<String> temp1 = ProcessFile.readFile("PassengerList");
 		for(String line:temp1)
@@ -33,6 +33,16 @@ public class PassengerManager {
 	public void removeData(){
 		passengerGroup.remove(0);
 		limit--;
+	}
+	
+	public String fetchFirstData(){
+		String str = "";
+		for(PassengerInfo pi : passengerGroup){
+			 str += pi.getDestination();
+			 str += pi.getPassengerCount()+"\n";
+			 break;
+		}
+		return str;
 	}
 	
 	public void dispData(){

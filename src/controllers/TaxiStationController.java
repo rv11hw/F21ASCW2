@@ -34,6 +34,7 @@ public class TaxiStationController {
 			int taxiNo = Integer.parseInt(view.getTaxiNumbers());
 			taxiStationModel.setQueue(passNo, taxiNo);
 			taxiStationModel.dispQueue();
+			taxiStationModel.start();
 		}
 	}
 

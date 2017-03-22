@@ -1,16 +1,27 @@
 package views;
 import java.awt.Color;
+import java.awt.Font;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JSplitPane;
+import javax.swing.JTextArea;
 
+import interfaces.Observer;
 import model.TaxiStationModel;
  
-public class KioskGUI extends JFrame {
-     
+public class KioskGUI extends JFrame implements Observer  {
+	
+	
+	JTextArea window1TextArea;
+	JTextArea window2TextArea;
+	TaxiStationModel model;
+	
     public KioskGUI(TaxiStationModel model) {
+    	
+    	this.model = model;
+    	model.registerObserver(this);
          
         setTitle("Taxi Station - Kiosk");
         setSize(450, 350);
@@ -25,11 +36,32 @@ public class KioskGUI extends JFrame {
         jsp1.add(j1);
         jsp2.add(j2);
          
+       
+        
+        window1TextArea = new JTextArea(20, 90);
+        window1TextArea.setFont(new Font(Font.MONOSPACED, Font.PLAIN, 14));
+        window1TextArea.setEditable(false);
+        
+        window2TextArea = new JTextArea(20, 90);
+        window2TextArea.setFont(new Font(Font.MONOSPACED, Font.PLAIN, 14));
+        window2TextArea.setEditable(false);
+        
+        jsp1.add(window1TextArea);
+        jsp2.add(window2TextArea);
+        
         JSplitPane splitPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, true, jsp1, jsp2);
         splitPane.setDividerSize(15);
         splitPane.setDividerLocation(200);
         splitPane.setOneTouchExpandable(true);
         getContentPane().add(splitPane);
+        
+        this.pack();
    
     }
+    public void update()
+	{
+    	window1TextArea.setText(model.getWin1Queue());
+    	window2TextArea.setText(model.getWin2Queue());
+    	repaint();
+	}
 }
