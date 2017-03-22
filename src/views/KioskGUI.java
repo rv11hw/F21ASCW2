@@ -60,8 +60,8 @@ public class KioskGUI extends JFrame implements Observer  {
     }
     public void update()
 	{
-    	window1TextArea.setText(model.getWin1Queue());
-    	window2TextArea.setText(model.getWin2Queue());
+    	window1TextArea.setText(window1TextArea.getText()+"\n"+model.getWin1Queue());
+    	window2TextArea.setText(window2TextArea.getText()+"\n"+model.getWin2Queue());
     	repaint();
 	}
 }

@@ -73,23 +73,25 @@ public class TaxiStationModel implements Subject  {
 		int count = 0;		
 		for(PassengerInfo pass : pgManage.getPGObj()){
 			TaxiInfo taxi = taxiManage.getTaxiObj().get(count);
+						
+			//pgManage.removeData();
+			//taxiManage.removeData();
 			
 			// creates and starts a thread using this counter
-			pgManage.removeData();
-			
-			window1 = new KioskWindow("W1",pass,taxi);
-			notifyObservers();			
-			Thread thread1 = new Thread(window1);
-			thread1.start();
-			
-
-			// creates and starts a 2nd thread using this counter
-			window2 = new KioskWindow("W2",pass,taxi);
-			notifyObservers();
-			Thread thread2 = new Thread(window2);
-			thread2.start();
-			
-			if(++count == pgManage.getLimit() || ++count == taxiManage.getLimit()){
+			if(count%2 == 0){
+				window1 = new KioskWindow("W1",pass,taxi);
+				notifyObservers();			
+				Thread thread1 = new Thread(window1);
+				thread1.start();
+			}else{
+				// creates and starts a 2nd thread using this counter
+				window2 = new KioskWindow("W2",pass,taxi);
+				notifyObservers();	
+				Thread thread2 = new Thread(window2);							
+				thread2.start();
+			}		
+			count++;
+			if(count == (pgManage.getLimit()+1) || count == (taxiManage.getLimit()+1)){
 		    	break;
 		    }
 		}
