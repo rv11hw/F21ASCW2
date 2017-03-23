@@ -32,9 +32,12 @@ public class TaxiStationController {
 		{
 			int passNo = Integer.parseInt(view.getPassNumber());
 			int taxiNo = Integer.parseInt(view.getTaxiNumbers());
+			int sleepTime = Integer.parseInt(view.getSleepTime());
 			taxiStationModel.setQueue(passNo, taxiNo);
 			taxiStationModel.dispQueue();
-			taxiStationModel.start();
+			view.setSleepTime(sleepTime);
+			Thread t1 = new Thread(taxiStationModel);
+			t1.start();
 		}
 	}
 

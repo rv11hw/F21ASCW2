@@ -1,0 +1,12 @@
+W1: Mirdiff City Center 3 people UT123
+W2: Silicon Oasis 2 people UT000
+W1: Dubai Mall 3 people UT367
+W2: Global Village 4 people UT233
+W1: Manfred Larsson 3 people UT654
+W1: Mirdiff City Center 3 people UT123
+W2: Silicon Oasis 2 people UT000
+W1: Dubai Mall 3 people UT367
+W1: Mirdiff City Center 3 people UT123
+W2: Silicon Oasis 2 people UT000
+W1: Dubai Mall 3 people UT367
+W2: Global Village 4 people UT233

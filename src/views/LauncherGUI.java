@@ -10,6 +10,7 @@ public class LauncherGUI extends JFrame{
 	//gui components
 		private JTextField passengerGroups = new JTextField();
 		private JTextField taxi = new JTextField();
+		private JTextField sleepTime = new JTextField();
 		private JButton startButton = new JButton("Start");
 		
 		public LauncherGUI()
@@ -25,21 +26,23 @@ public class LauncherGUI extends JFrame{
 		}
 		
 		public JPanel createKioskSettingPanel()  {	
-			JPanel setClockPanel = new JPanel(new BorderLayout());	
+			JPanel setKioskPanel = new JPanel(new BorderLayout());	
 			
-			JPanel panel = new JPanel(new GridLayout(2,2));
-			panel.add(new JLabel("Passenger Groups (0 - 5)"));
+			JPanel panel = new JPanel(new GridLayout(3,2));
+			panel.add(new JLabel("Passenger Groups (>1)"));
 			panel.add(passengerGroups);
-			panel.add(new JLabel("Taxis (0 - 5)"));
+			panel.add(new JLabel("Taxis (>1)"));
 			panel.add(taxi);
-			setClockPanel.add(BorderLayout.CENTER, panel);
+			panel.add(new JLabel("Sleep (in milliseconds)"));
+			panel.add(sleepTime);
+			setKioskPanel.add(BorderLayout.CENTER, panel);
 			
 			JPanel buttonPanel = new JPanel();
 			buttonPanel.add(startButton);	
 
-			setClockPanel.add(BorderLayout.SOUTH, buttonPanel);
+			setKioskPanel.add(BorderLayout.SOUTH, buttonPanel);
 					
-			return setClockPanel;
+			return setKioskPanel;
 		}
 		
 		//return contents of passenger text box
@@ -50,6 +53,10 @@ public class LauncherGUI extends JFrame{
 		//return contents of taxi text box
 		public String getTaxiNumbers() {
 			return taxi.getText();
+		}
+		
+		public String getSleepTime() {
+			return sleepTime.getText();
 		}
 		
 		//add listener to update button

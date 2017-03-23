@@ -44,5 +44,13 @@ public class TaxiStationGUI
 	public void addSetListener (ActionListener al) {
 		lgui.addSetListener(al);
 	}
+	
+	public void setSleepTime(int sleepTime){
+		kgui.setSleepTime(sleepTime);
+	}
+	
+	public String getSleepTime() {
+		return lgui.getSleepTime();
+	}
 }
 

@@ -6,7 +6,7 @@ import java.util.List;
 import interfaces.Observer;
 import interfaces.Subject;
 
-public class TaxiStationModel implements Subject  {
+public class TaxiStationModel implements Runnable, Subject  {
 
 	PassengerManager pgManage;
 	TaxiManager taxiManage;
@@ -15,6 +15,8 @@ public class TaxiStationModel implements Subject  {
 	
 	KioskWindow window1;
 	KioskWindow window2;
+	
+	String winSelect = "W1";
 	
 	Thread thread1;
 	Thread thread2;
@@ -35,6 +37,14 @@ public class TaxiStationModel implements Subject  {
 		passManagerStr = pgManage.getStrData();
 		taxiManagerStr = taxiManage.getStrData();
 		notifyObservers();
+	}
+	
+	public void setWindowVal(String val){
+		winSelect = val;
+	}
+	
+	public String getWindowVal(){
+		return winSelect;
 	}
 	
 	public String getPassengerQueue(){
@@ -86,16 +96,14 @@ public class TaxiStationModel implements Subject  {
 		return window2.getwindow2Str();
 	}
 	
-	public void start(){		
+	public void run(){		
 		int count = 0;		
 		for(PassengerInfo pass : pgManage.getPGObj()){
 			TaxiInfo taxi = taxiManage.getTaxiObj().get(count);
-						
-			//pgManage.removeData();
-			//taxiManage.removeData();
-			
+		
 			// creates and starts a thread using this counter
 			if(count%2 == 0){
+				setWindowVal("W1");
 				window1 = new KioskWindow("W1",pass,taxi);					
 				thread1 = new Thread(window1);					
 				thread1.start();
@@ -103,6 +111,7 @@ public class TaxiStationModel implements Subject  {
 				
 			}else{
 				// creates and starts a 2nd thread using this counter
+				setWindowVal("W2");
 				window2 = new KioskWindow("W2",pass,taxi);					
 				thread2 = new Thread(window2);				
 				thread2.start();
