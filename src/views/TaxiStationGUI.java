@@ -15,10 +15,7 @@ public class TaxiStationGUI
 	QueueGUI qgui;
 	KioskGUI kgui;
 	
-	public TaxiStationGUI(TaxiStationModel model){
-		lgui = new LauncherGUI();
-		lgui.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		lgui.setVisible(true);
+	public TaxiStationGUI(TaxiStationModel model){		
 		
 		qgui = new QueueGUI(model);
 	    qgui.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -28,6 +25,10 @@ public class TaxiStationGUI
 	    kgui = new KioskGUI(model);
 		kgui.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		kgui.setVisible(true);
+		
+		lgui = new LauncherGUI();
+		lgui.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		lgui.setVisible(true);
 	}
 	
 	//return contents of passenger text box
